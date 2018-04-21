@@ -1,0 +1,511 @@
+@import "variables";
+
+%flex-container {
+    display: flex;
+}
+
+@mixin filter-gray($percent) {
+    -webkit-filter: grayscale($percent);
+    -moz-filter: grayscale($percent);
+    -o-filter: grayscale($percent);
+    -ms-filter: grayscale($percent);
+    filter: grayscale($percent);
+}
+
+@mixin box-shadow {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
+    box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $normalFont;
+    @extend %flex-container;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+
+
+/* --------- Header --------- */
+
+header {
+    background: $mainColor;
+
+    .headerContent {
+        @extend %flex-container;
+        align-items: center;
+        width: 70%;
+        margin: 0 auto;
+        position: relative;
+
+        img {
+            width: 50px;
+            padding: 10px 0;
+            float: left;
+        }
+
+        h1 {
+            font-family: $headFont;
+            padding: 20px;
+            color: #EEF0F4;
+            margin-top: -5px;
+            float: left;
+        }
+
+        nav {
+            position: absolute;
+            right: 0;
+            font-size: 1.2em;
+
+            ul {
+                li {
+                    border: 3px solid $mainColor;
+
+                    a {
+                        color: #fff;
+                    }
+
+                    #sum,
+                    #sum2 {
+                        padding-left: 10px;
+                        color: #A7A7A7;
+                    }
+
+                    #sum:after,
+                    #sum2:after {
+                        content: '€';
+                    }
+                }
+
+                li:hover,
+                .current {
+                    border-bottom: 3px solid $secColor;
+                    transition: border-color 1s ease;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+/* --------- Main Content: Trips --------- */
+
+main {
+    flex: 1;
+    width: 70%;
+    margin: 0 auto;
+
+    .flexcontainer {
+        @extend %flex-container;
+        justify-content: space-between;
+        flex-flow: wrap;
+        align-items: baseline;
+        margin-bottom: 15px;
+
+        figure {
+            width: 45%;
+            margin-top: 80px;
+            position: relative;
+            @include box-shadow;
+
+            /* ---------- Custom Checkbox for adding Trip to Invoice --------- */
+            .add_remove_container input {
+                display: none;
+                /* Remove default checkbox */
+            }
+            /* -- Container -- */
+            .add_remove_container {
+                position: absolute;
+                right: 80px;
+                top: 22px;
+                z-index: 9;
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s, opacity $time linear;
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            /* -- Hover container -- */
+            /* Base */
+            .add_remove_container:hover input~.checkmark {
+                cursor: pointer;
+                background: $mainColor;
+            }
+            /* Checked */
+            .add_remove_container:hover input:checked~.checkmark {
+                cursor: pointer;
+                background: red;
+            }
+
+            /* -- Custom Checkbox Base -- */
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 50px;
+                width: 50px;
+                background-color: $secColor;
+                border: 3px solid #fff;
+                border-radius: 45px;
+            }
+
+            /* Checked */
+            .add_remove_container input:checked~.checkmark {
+                background-color: $mainColor;
+            }
+
+            /* -- Icons Base -- */
+            /* Base */
+            .checkmark:before {
+                content: "\f055";
+                font-family: "Font Awesome 5 Free";
+                position: absolute;
+                font-weight: 900;
+                font-size: 40px;
+                top: 2.5px;
+                left: 5px;
+                color: $mainColor;
+            }
+            /* Checked */
+            .add_remove_container input:checked~.checkmark:before {
+                content: "\f056";
+                font-family: "Font Awesome 5 Free";
+                position: absolute;
+                font-weight: 900;
+                font-size: 40px;
+                top: 2.5px;
+                left: 5px;
+                color: $secColor;
+            }
+
+            /* -- Icons Hover -- */
+            /* Base */
+            .add_remove_container:hover input~.checkmark:before {
+                cursor: pointer;
+                color: $secColor;
+            }
+            /* Checked */
+            .add_remove_container:hover input:checked~.checkmark:before {
+                cursor: pointer;
+                color: $mainColor;
+            }
+
+            /* --------- Figcaption --------- */
+            figcaption {
+                @extend %flex-container;
+                justify-content: space-between;
+                position: absolute;
+                background: $mainColor;
+                color: #D8e8eb;
+                text-transform: uppercase;
+                font-weight: bold;
+                padding: 7px 0;
+                bottom: -3px;
+                width: 100%;
+                max-height: 32px;
+                transition: all $time linear;
+
+                .loc_head {
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                    position: absolute;
+                    font-size: 1.6em;
+                }
+
+                .loc_info {
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: visibility 0s, opacity $time linear;
+                    padding: 0 10px;
+                }
+
+                .price_info {
+                    text-align: right;
+                    @extend .loc_info;
+                }
+
+                .loc_info h2 {
+                    color: $secColor;
+                    font-size: 1.6em;
+                    font-weight: bold;
+                    padding-bottom: 10px;
+                }
+
+                .price_info h2 {
+                    color: $green;
+                    font-size: 1.8em;
+                    font-weight: bold;
+                    padding-bottom: 10px;
+                }
+
+                .loc_info p,
+                .price_info p {
+                    font-size: 1.2em;
+                    color: #fff;
+                }
+            }
+            /* --------- Figure Image --------- */
+            img {
+                @include filter-gray(80%);
+                width: 100%;
+                transition: all $time linear;
+            }
+        }
+
+        /* --------- Figure Hover States --------- */
+        figure:hover figcaption,
+        figure .add_remove_container input:checked {
+            cursor: pointer;
+            max-height: 70px;
+            text-align: left;
+
+            .loc_head {
+                display: none;
+            }
+
+            .loc_info,
+            .price_info {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        figure:hover .add_remove_container {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        figure:hover img {
+            @include filter-gray(20%);
+            cursor: pointer;
+        }
+    }
+}
+
+
+
+
+/* --------- Footer --------- */
+
+footer {
+    height: 100%;
+    background: $mainColor;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 80px;
+}
+
+
+
+
+/* ---------- Invoice ---------- */
+
+#invoice {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+    width: 70%;
+    margin: auto;
+}
+
+.inv_info {
+    padding-bottom: 44px;
+}
+
+h3 {
+    padding: 20px 0;
+}
+
+table {
+    text-align: right;
+
+    td,
+    th {
+        padding: 20px;
+    }
+
+    .divider {
+        border-top: double #000;
+    }
+}
+
+
+
+
+/* ---------- Media Queries ---------- */
+
+@media screen and (max-width:1264px) {
+
+    main {
+        width: 97%;
+    }
+
+    header {
+        .headerContent {
+            width: 97%;
+        }
+    }
+
+    #invoice {
+        width: 97%;
+    }
+}
+
+@media screen and (max-width:850px) {
+    main {
+        .flexcontainer {
+            figure {
+                width: 80%;
+                margin: 80px auto 0;
+
+                .add_remove_container {
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+                img {
+                    @include filter-gray(20%);
+                    width: 100%;
+                    transition: all $time linear;
+                }
+            }
+
+            figure figcaption {
+                max-height: 70px;
+                text-align: left;
+
+                .loc_head {
+                    display: none;
+                }
+
+                .loc_info,
+                .price_info {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    header {
+        .headerContent {
+            flex-flow: wrap;
+        }
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    header {
+        .headerContent {
+
+            h1 {
+                font-size: 1.2em;
+            }
+
+            img {
+                width: 30px;
+            }
+        }
+    }
+
+    main {
+        .flexcontainer {
+            figure {
+                width: 97%;
+                margin: 30px auto 0;
+            }
+        }
+    }
+
+    #invoice {
+        top: 134px;
+    }
+    .inv_info {
+        padding-bottom: 60px;
+    }
+}
+
+@media screen and (max-width:400px) {
+    header {
+        .headerContent {
+
+            h1 {
+                display: none;
+            }
+
+            img {
+                width: 35px;
+            }
+        }
+    }
+
+    main {
+        .flexcontainer {
+            figure {
+                width: 97%;
+                margin: 30px auto 0;
+
+                .add_remove_container {
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+                figcaption {
+                    .loc_info h2 {
+                        font-size: 1.2em;
+                    }
+
+                    .price_info h2 {
+                        font-size: 1.4em;
+                    }
+
+                    .loc_info p,
+                    .price_info p {
+                        font-size: 0.8em;
+                    }
+                }
+            }
+
+            figure figcaption {
+                max-height: 70px;
+                text-align: left;
+
+                .loc_head {
+                    display: none;
+                }
+
+                .loc_info,
+                .price_info {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
