@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png">
     <title>Price Comparison</title>
 </head>
 
@@ -21,16 +21,16 @@
     <header>
         <div class="headerContent">
             <a href="index.html" title="Home">
-				<img src="img/logo.png" alt="logo">
-				<h1>Price Comparison</h1>
-			</a>
+                <img src="img/logo.png" alt="logo">
+                <h1>Price Comparison</h1>
+            </a>
             <nav>
                 <ul>
                     <li>
                         <a href="invoice.html" title="invoice">
-						<i class="far fa-file-alt"></i>
-						Invoice
-						</a>
+                        <i class="far fa-file-alt"></i>
+                        Invoice
+                        </a>
                         <span id="sum">0</span>
                     </li>
                 </ul>
@@ -40,39 +40,39 @@
     <main>
         <div class="flexcontainer">
             <figure>
-                <label class="add_remove_container">
+                <label id="tokio_label" class="add_remove_container">
                     <input id="tokio" type="checkbox" name="check" value="tokio">
                     <span class="checkmark"></span>
                 </label>
-                <img src="img/tokio.jpg" alt="tokio">
-                <figcaption>
+                <img id="tokio_img" src="img/tokio.jpg" alt="tokio">
+                <figcaption id="tokio_info">
                     <span class="loc_head">Tokio</span>
                     <div class="loc_info">
-						<h2>Tokio</h2>
-						<p>Japan</p>
-					</div>
+                        <h2>Tokio</h2>
+                        <p>Japan</p>
+                    </div>
                     <div class="price_info">
-						<h2>2436€</h2>
-						<p>Average Price</p>
-					</div>
+                        <h2>2436€</h2>
+                        <p>Average Price</p>
+                    </div>
                 </figcaption>
             </figure>
             <figure>
-                <label class="add_remove_container">
+                <label id="moskau_label" class="add_remove_container">
                     <input id="moskau" type="checkbox" name="check" value="moskau">
                     <span class="checkmark"></span>
                 </label>
-                <img src="img/moskau.jpg" alt="moskau">
-                <figcaption>
+                <img id="moskau_img" src="img/moskau.jpg" alt="moskau">
+                <figcaption id="moskau_info">
                     <span class="loc_head">Moskau</span>
                     <div class="loc_info">
-						<h2>Moskau</h2>
-						<p>Russia</p>
-					</div>
+                        <h2>Moskau</h2>
+                        <p>Russia</p>
+                    </div>
                     <div class="price_info">
-						<h2>2287€</h2>
-						<p>Average Price</p>
-					</div>
+                        <h2>2287€</h2>
+                        <p>Average Price</p>
+                    </div>
                 </figcaption>
             </figure>
         </div>

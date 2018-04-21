@@ -1,22 +1,10 @@
 @import "variables";
+@import "mixins";
 
 %flex-container {
     display: flex;
 }
 
-@mixin filter-gray($percent) {
-    -webkit-filter: grayscale($percent);
-    -moz-filter: grayscale($percent);
-    -o-filter: grayscale($percent);
-    -ms-filter: grayscale($percent);
-    filter: grayscale($percent);
-}
-
-@mixin box-shadow {
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
-    -moz-box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
-    box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
-}
 
 * {
     margin: 0;
@@ -28,6 +16,9 @@ body {
     @extend %flex-container;
     min-height: 100vh;
     flex-direction: column;
+    background: url('../img/clouds.jpg') no-repeat fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 a {
@@ -36,6 +27,10 @@ a {
 
 ul {
     list-style: none;
+}
+
+b {
+    color: $secColor;
 }
 
 
@@ -101,6 +96,7 @@ header {
         }
     }
 }
+
 
 
 
@@ -190,7 +186,7 @@ main {
             }
             /* Checked */
             .add_remove_container input:checked~.checkmark:before {
-                content: "\f056";
+                content: "\f058";
                 font-family: "Font Awesome 5 Free";
                 position: absolute;
                 font-weight: 900;
@@ -208,6 +204,7 @@ main {
             }
             /* Checked */
             .add_remove_container:hover input:checked~.checkmark:before {
+                content: "\f056";
                 cursor: pointer;
                 color: $mainColor;
             }
@@ -277,7 +274,8 @@ main {
 
         /* --------- Figure Hover States --------- */
         figure:hover figcaption,
-        figure .add_remove_container input:checked {
+        figure .add_remove_container input:checked,
+        .checked {
             cursor: pointer;
             max-height: 70px;
             text-align: left;
@@ -293,17 +291,20 @@ main {
             }
         }
 
-        figure:hover .add_remove_container {
-            visibility: visible;
-            opacity: 1;
+        figure:hover .add_remove_container,
+        .label_checked {
+            visibility: visible !important;
+            opacity: 1 !important;
         }
 
-        figure:hover img {
+        figure:hover img,
+        .img_checked {
             @include filter-gray(20%);
             cursor: pointer;
         }
     }
 }
+
 
 
 
@@ -322,6 +323,7 @@ footer {
 
 
 
+
 /* ---------- Invoice ---------- */
 
 #invoice {
@@ -335,14 +337,19 @@ footer {
 
 .inv_info {
     padding-bottom: 44px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 h3 {
     padding: 20px 0;
+    border-bottom: 3px solid #000;
 }
 
 table {
     text-align: right;
+    width: 100%;
+    font-size: 1.5em;
+    background-color: rgba(255, 255, 255, 0.7);
 
     td,
     th {
@@ -354,158 +361,8 @@ table {
     }
 }
 
-
-
-
-/* ---------- Media Queries ---------- */
-
-@media screen and (max-width:1264px) {
-
-    main {
-        width: 97%;
-    }
-
-    header {
-        .headerContent {
-            width: 97%;
-        }
-    }
-
-    #invoice {
-        width: 97%;
-    }
+label {
+    font-size: 1.2em;
 }
 
-@media screen and (max-width:850px) {
-    main {
-        .flexcontainer {
-            figure {
-                width: 80%;
-                margin: 80px auto 0;
-
-                .add_remove_container {
-                    visibility: visible;
-                    opacity: 1;
-                }
-
-                img {
-                    @include filter-gray(20%);
-                    width: 100%;
-                    transition: all $time linear;
-                }
-            }
-
-            figure figcaption {
-                max-height: 70px;
-                text-align: left;
-
-                .loc_head {
-                    display: none;
-                }
-
-                .loc_info,
-                .price_info {
-                    visibility: visible;
-                    opacity: 1;
-                }
-            }
-        }
-    }
-
-    header {
-        .headerContent {
-            flex-flow: wrap;
-        }
-    }
-}
-
-@media screen and (max-width:500px) {
-
-    header {
-        .headerContent {
-
-            h1 {
-                font-size: 1.2em;
-            }
-
-            img {
-                width: 30px;
-            }
-        }
-    }
-
-    main {
-        .flexcontainer {
-            figure {
-                width: 97%;
-                margin: 30px auto 0;
-            }
-        }
-    }
-
-    #invoice {
-        top: 134px;
-    }
-    .inv_info {
-        padding-bottom: 60px;
-    }
-}
-
-@media screen and (max-width:400px) {
-    header {
-        .headerContent {
-
-            h1 {
-                display: none;
-            }
-
-            img {
-                width: 35px;
-            }
-        }
-    }
-
-    main {
-        .flexcontainer {
-            figure {
-                width: 97%;
-                margin: 30px auto 0;
-
-                .add_remove_container {
-                    visibility: visible;
-                    opacity: 1;
-                }
-
-                figcaption {
-                    .loc_info h2 {
-                        font-size: 1.2em;
-                    }
-
-                    .price_info h2 {
-                        font-size: 1.4em;
-                    }
-
-                    .loc_info p,
-                    .price_info p {
-                        font-size: 0.8em;
-                    }
-                }
-            }
-
-            figure figcaption {
-                max-height: 70px;
-                text-align: left;
-
-                .loc_head {
-                    display: none;
-                }
-
-                .loc_info,
-                .price_info {
-                    visibility: visible;
-                    opacity: 1;
-                }
-            }
-        }
-    }
-}
+@import "media";

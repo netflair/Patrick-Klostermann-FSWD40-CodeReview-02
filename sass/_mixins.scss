@@ -1,0 +1,13 @@
+@mixin filter-gray($percent) {
+    -webkit-filter: grayscale($percent);
+    -moz-filter: grayscale($percent);
+    -o-filter: grayscale($percent);
+    -ms-filter: grayscale($percent);
+    filter: grayscale($percent);
+}
+
+@mixin box-shadow {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
+    box-shadow: 0px 0px 6px 0px rgba(163, 158, 163, 1);
+}

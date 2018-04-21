@@ -16,6 +16,9 @@ body {
     font-family: "Lato", sans-serif;
     min-height: 100vh;
     flex-direction: column;
+    background: url("../img/clouds.jpg") no-repeat fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 a {
@@ -24,6 +27,10 @@ a {
 
 ul {
     list-style: none;
+}
+
+b {
+    color: #0080ff;
 }
 
 
@@ -168,7 +175,7 @@ main .flexcontainer figure .checkmark:before {
 }
 
 main .flexcontainer figure .add_remove_container input:checked~.checkmark:before {
-    content: "\f056";
+    content: "\f058";
     font-family: "Font Awesome 5 Free";
     position: absolute;
     font-weight: 900;
@@ -184,6 +191,7 @@ main .flexcontainer figure .add_remove_container:hover input~.checkmark:before {
 }
 
 main .flexcontainer figure .add_remove_container:hover input:checked~.checkmark:before {
+    content: "\f056";
     cursor: pointer;
     color: #003680;
 }
@@ -255,14 +263,16 @@ main .flexcontainer figure img {
 }
 
 main .flexcontainer figure:hover figcaption,
-main .flexcontainer figure .add_remove_container input:checked {
+main .flexcontainer figure .add_remove_container input:checked,
+main .flexcontainer .checked {
     cursor: pointer;
     max-height: 70px;
     text-align: left;
 }
 
 main .flexcontainer figure:hover figcaption .loc_head,
-main .flexcontainer figure .add_remove_container input:checked .loc_head {
+main .flexcontainer figure .add_remove_container input:checked .loc_head,
+main .flexcontainer .checked .loc_head {
     display: none;
 }
 
@@ -272,17 +282,23 @@ main .flexcontainer figure:hover figcaption .price_info,
 main .flexcontainer figure .add_remove_container input:checked .loc_info,
 main .flexcontainer figure .add_remove_container input:checked figcaption .price_info,
 main .flexcontainer figure figcaption .add_remove_container input:checked .price_info,
-main .flexcontainer figure .add_remove_container input:checked .price_info {
+main .flexcontainer figure .add_remove_container input:checked .price_info,
+main .flexcontainer .checked .loc_info,
+main .flexcontainer .checked figure figcaption .price_info,
+main .flexcontainer figure figcaption .checked .price_info,
+main .flexcontainer .checked .price_info {
     visibility: visible;
     opacity: 1;
 }
 
-main .flexcontainer figure:hover .add_remove_container {
-    visibility: visible;
-    opacity: 1;
+main .flexcontainer figure:hover .add_remove_container,
+main .flexcontainer .label_checked {
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-main .flexcontainer figure:hover img {
+main .flexcontainer figure:hover img,
+main .flexcontainer .img_checked {
     -webkit-filter: grayscale(20%);
     -moz-filter: grayscale(20%);
     -o-filter: grayscale(20%);
@@ -317,14 +333,19 @@ footer {
 
 .inv_info {
     padding-bottom: 44px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 h3 {
     padding: 20px 0;
+    border-bottom: 3px solid #000;
 }
 
 table {
     text-align: right;
+    width: 100%;
+    font-size: 1.5em;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 table td,
@@ -334,6 +355,10 @@ table th {
 
 table .divider {
     border-top: double #000;
+}
+
+label {
+    font-size: 1.2em;
 }
 
 
